@@ -1,0 +1,26 @@
+@import './base.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: content-box;
+  font-family: "Microsoft YaHei";
+}
+
+ul, li, ol{
+  list-style: none;
+}
+
+a, a:link, a:visited, a:active{
+  text-decoration: none;
+  color: inherit;
+}
+
+button, a {
+  cursor: pointer;
+}
+
+html, body {
+  height: 100%;
+  min-width: $body-min-width;
+}

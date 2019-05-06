@@ -1,0 +1,175 @@
+@import '../../css/base.scss';
+
+.home-container {
+    height: 100%;
+}
+
+.banner {
+  height: 450px;
+  background: url(../../assets/images/banner.jpg) no-repeat;
+  background-size: 100% 100%;
+  overflow: hidden;
+
+  .content {
+    width: 70%;
+    height: 100%;
+    margin-left: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .title {
+    font-size: 40px;
+    letter-spacing: 4px;
+    color: #fff;
+  }
+
+  .info {
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 26px;
+    color: #fff;
+  }
+
+  .try-btn {
+    margin-top: 20px;
+
+    button {
+      width: 120px;
+      height: 32px;
+      line-height: 32px;
+      color: #fff;
+      font-size: 16px;
+      border: 1px solid #fff;
+      background-color: hsla(0,0%,100%,.1);
+      outline: none;
+
+      &:hover {
+        background: #fff;
+        color: #000;
+      }
+    }
+  }
+}
+
+.demo {
+  width: 75%;
+  min-width: $body-min-width;
+  margin: 0 auto;
+  padding: 80px 0;
+
+  .header {
+    line-height: 46px;
+    font-size: 32px;
+    color: #000;
+    letter-spacing: 0;
+    text-align: center;
+  }
+
+  .container {
+    margin-top: 60px;
+  }
+
+  .input {
+    position: relative;
+  }
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
+  }
+
+  .random-text-link {
+    color: $theme-color;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .textarea-clear-btn {
+    padding: 3px 6px;
+    color: #999;
+    font-size: 14px;
+    border: 1px solid #999;
+    border-radius: 4px;
+    background: #fff;
+
+    &:hover {
+      color: #555;
+      border-color: #555;
+    }
+  }
+
+  .input-box {
+    margin-top: 15px;
+    border: 1px solid #eee;
+    padding: 20px;
+    padding-right: 0;
+    display: flex;
+  }
+
+  .nlp-textarea {
+    width: 100%;
+    border: none;
+    outline: none;
+    line-height: 30px;
+    font-size: 14px;
+    padding-right: 20px;
+    resize: none;
+  }
+
+  .input-tips {
+    font-size: 14px;
+    color: $error-tips-color;
+    position: absolute;
+    bottom: -24px;
+  }
+
+  .submit-btn {
+    margin-top: 40px;
+    text-align: center;
+
+    button {
+      width: 180px;
+      height: 54px;
+      line-height: 54px;
+      color: $theme-color;
+      font-size: 18px;
+      border: 1px solid $theme-color;
+      background: #fff;
+      outline: none;
+
+      &:hover {
+        background: $btn-hover-color;
+        color: #fff;
+        border-color: $btn-hover-color;
+      }
+    }
+  }
+
+  .result {
+    margin-top: 40px;
+    border: 1px solid #eee;
+    padding: 20px;
+    font-size: 14px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+
+    .tips {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .result-box {
+      flex: 1;
+      margin-top: 26px;
+      line-height: 30px;
+      color: #666;
+    }
+  }
+}
