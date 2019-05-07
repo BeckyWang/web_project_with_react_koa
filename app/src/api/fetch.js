@@ -18,6 +18,8 @@ export const executeFetch = (...args) => new Promise(async (resolve, reject) => 
   try {
     response = await fetch(...args);
     result = await response.json();
-  } catch (e) {}
+  } catch (e) {
+    result.info = e.message || '未知错误，请稍后再试！';
+  }
   response.status === 200 ? resolve(result) : reject(result);
 });

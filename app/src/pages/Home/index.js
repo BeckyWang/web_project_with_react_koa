@@ -3,7 +3,7 @@ import Loading from '../../components/Loading';
 import Unlink from '../../components/Unlink';
 import styles from './styles';
 import { generateSummary, getRandomText } from '../../api/home';
- 
+
 class Home extends React.Component {
   constructor() {
     super();
@@ -34,7 +34,7 @@ class Home extends React.Component {
         originalText: text,
         inputTips: ''
       });
-    } catch({info = '未知错误，请稍候再试！'}) {
+    } catch ({ info = '未知错误，请稍候再试！' }) {
       this.setState({
         loading: false,
         error: true
@@ -73,19 +73,21 @@ class Home extends React.Component {
   async toSubmit() {
     const { originalText } = this.state;
 
-    if(this.toCheckInput(originalText)) {
+    if (this.toCheckInput(originalText)) {
       this.setState({
         loading: true,
         error: false
       });
 
       try {
-        const { summary } = await generateSummary({originalText})
+        const { summary } = await generateSummary({
+          originalText
+        })
         this.setState({
           summary,
           loading: false
         });
-      } catch({info = '未知错误，请稍候再试！'}) {
+      } catch ({ info = '未知错误，请稍候再试！' }) {
         this.setState({
           loading: false,
           error: true
@@ -105,10 +107,10 @@ class Home extends React.Component {
           <div className={styles['try-btn']}><button onClick={this.toTry}>试一试</button></div>
         </div>
       </div>
-
+  
       <div className={styles['demo']} ref='demo'>
         <div className={styles['header']}>功能演示</div>
-
+        
         <div className={styles['container']}>
           <div className={styles['input']}>
             <div className={styles['title']}>
@@ -116,12 +118,12 @@ class Home extends React.Component {
                 <span>请输入一段想分析的科研文章：</span>
                 <span className={styles['random-text-link']} onClick={this.toGetRandomText}>随机示例</span>
               </div>
-              {originalText.length > 0 && <button className={styles['textarea-clear-btn']} onClick={this.toClearTextarea}>清空输入</button>}
+              { originalText.length > 0 && <button className={styles['textarea-clear-btn']} onClick={this.toClearTextarea}>清空输入</button>}
             </div>
             <div className={styles['input-box']}>
               <textarea rows="10" className={styles['nlp-textarea']} value={originalText} onChange={this.handleTextareaChange}></textarea>
             </div>
-            {inputTips.length > 0 && <div className={styles['input-tips']}>{inputTips}</div>}
+            { inputTips.length > 0 && <div className={styles['input-tips']}>{inputTips}</div>}
           </div>
 
           <div className={styles['submit-btn']}><button onClick={this.toSubmit}>开始分析</button></div>
@@ -129,8 +131,8 @@ class Home extends React.Component {
           <div className={styles['result']}>
             <div>分析结果</div>
             { loading && <div className={styles['tips']}><Loading tips='分析中，请稍后'/></div>}
-            { error && <div className={styles['tips']}><Unlink tips='服务器异常，建议您稍后体验'/></div> }
-            { !(loading || error) && <div className={styles['result-box']}>{summary}</div>}
+            { error && <div className={styles['tips']}><Unlink tips='服务器异常，建议您稍后体验'/></div> } 
+            {!(loading || error) && <div className={styles['result-box']}>{summary}</div>}
           </div>
         </div>
       </div>
