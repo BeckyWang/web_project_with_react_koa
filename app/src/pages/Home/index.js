@@ -1,6 +1,7 @@
 import React from 'react';
 import Loading from '../../components/Loading';
 import Unlink from '../../components/Unlink';
+import message from '../../components/message';
 import styles from './styles';
 import { generateSummary, getRandomText } from '../../api/home';
 
@@ -71,7 +72,12 @@ class Home extends React.Component {
   }
 
   async toSubmit() {
-    const { originalText } = this.state;
+    const { originalText, loading } = this.state;
+
+    if(loading) {
+      message.warning('正在分析中，请稍等！');
+      return;
+    }
 
     if (this.toCheckInput(originalText)) {
       this.setState({
@@ -110,7 +116,7 @@ class Home extends React.Component {
   
       <div className={styles['demo']} ref='demo'>
         <div className={styles['header']}>功能演示</div>
-        
+
         <div className={styles['container']}>
           <div className={styles['input']}>
             <div className={styles['title']}>
