@@ -1,6 +1,7 @@
 const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const base_config = require('./webpack.base.js');
@@ -27,7 +28,14 @@ module.exports = merge(base_config, {
   },
 
   optimization: {
-    minimizer: [new OptimizeCSSAssetsPlugin({})]
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true // set to true if you want JS source maps
+      }),
+      new OptimizeCSSAssetsPlugin({})
+    ]
   },
 
   plugins: [

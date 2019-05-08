@@ -40,16 +40,31 @@ module.exports = {
     }]
   },
 
+  optimization: {
+    runtimeChunk: {
+      name: 'mainfest'
+    },
+    splitChunks: {
+      chunks: "all",
+      maxInitialRequests: 5,
+      minSize: 0,
+      cacheGroups: {
+        vendor: { //node_modules内的依赖库
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendor",
+          minChunks: 1, //被不同entry引用次数(import)
+          priority: 100
+        }
+      }
+    }
+  },
+
   resolve: {
     modules: [
       "node_modules",
       srcResolve('')
     ],
     extensions: [".js", ".jsx", ".json", ".scss", ".css"]
-  },
-
-  optimization: {
-    usedExports: true
   },
 
   plugins: [

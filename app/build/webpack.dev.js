@@ -36,4 +36,5 @@ module.exports = merge(base_config, {
       }, 'sass-loader']
     }]
   }
+
 });
