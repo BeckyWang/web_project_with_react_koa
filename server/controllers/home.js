@@ -2,6 +2,7 @@ const randomTexts = require('../mock/random');
 const { generateSummary } = require('../models/home');
 
 module.exports = {
+  //生成摘要
   summary: async (ctx, next) => {
     const { originalText } = ctx.request.body;
     try {
@@ -16,6 +17,7 @@ module.exports = {
       };
     }
   },
+  //生成随机文章
   randomText: async (ctx, next) => {
     const idx = Math.floor(Math.random() * 10);
     ctx.response.body = {

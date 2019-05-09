@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "webpack-dev-server --hot --config ./app/build/webpack.dev.js",
     "prod": "webpack --config ./app/build/webpack.prod.js",
-    "dev_server": "cross-env NODE_ENV=development nodemon --harmony ./server/app.js"
+    "dev_server": "cross-env NODE_ENV=development nodemon --harmony ./server/app.js",
+    "prod_server": "cross-env NODE_ENV=production node ./server/app.js"
   },
   "keywords": [
     "node",
