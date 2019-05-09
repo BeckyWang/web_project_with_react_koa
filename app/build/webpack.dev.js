@@ -1,23 +1,29 @@
 const path = require('path');
 const merge = require('webpack-merge');
 const base_config = require('./webpack.base.js');
+const public_config = require('../../config.js');
 
-const port = 8088;
-const host = `http://localhost:${port}`;
+const host = public_config['development'].host;
+const client_port = public_config['development'].client_port;
+const server_port = public_config['development'].server_port;
 
 module.exports = merge(base_config, {
   mode: 'development',
 
   devtool: 'cheap-module-eval-source-map',
 
+  output: {
+    publicPath: `${host}:${client_port}/`,
+  },
+
   devServer: {
-    contentBase: path.join(__dirname, '../dist'),
+    contentBase: path.join(__dirname, '../../dist'),
     compress: true,
     open: true,
-    port: port,
+    port: client_port,
     hot: true,
     proxy: {
-      '/api': 'http://localhost:8087'
+      '/api': `${host}:${server_port}`
     }
   },
 

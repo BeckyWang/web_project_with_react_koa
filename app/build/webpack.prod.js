@@ -1,3 +1,4 @@
+const path = require('path');
 const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -5,11 +6,19 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const base_config = require('./webpack.base.js');
+const public_config = require('../../config.js');
+
+const host = public_config['production'].host;
+const port = public_config['production'].server_port;
 
 module.exports = merge(base_config, {
   mode: 'production',
 
   devtool: 'cheap-module-source-map',
+
+  output: {
+    publicPath: `${host}:${port}/`,
+  },
 
   module: {
     rules: [{

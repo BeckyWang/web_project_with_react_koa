@@ -1,9 +1,10 @@
 const thrift = require('thrift');
 const SummarizationModel = require('../gen-nodejs/SummarizationModel');
 const ttypes = require('../gen-nodejs/summarization_types');
+const public_config = require('../../config.js');
 
-const host = '192.168.101.11';
-const port = 8082;
+const host = public_config['rpc'].host;
+const port = public_config['rpc'].port;
 
 module.exports = {
   generateSummary: originalText => new Promise(async (resolve, reject) => {

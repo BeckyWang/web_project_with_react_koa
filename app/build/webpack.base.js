@@ -1,15 +1,8 @@
 const path = require('path');
 const HtmlwebpackPlugin = require('html-webpack-plugin');
 
-const port = 8088;
-const host = `http://localhost:${port}/`;
-
 const srcResolve = function(file) {
   return path.join(__dirname, '..', 'src', file);
-};
-
-const distResolve = function(file) {
-  return path.join(__dirname, '..', '..', 'dist', file);
 };
 
 module.exports = {
@@ -18,8 +11,7 @@ module.exports = {
   },
 
   output: {
-    publicPath: host,
-    path: distResolve(''),
+    path: path.join(__dirname, '../../dist'),
     filename: 'js/[name].js'
   },
 

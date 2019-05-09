@@ -6,6 +6,12 @@ module.exports = {
   },
 
   production: {
+    server_port: 8087,
+    host: 'http://localhost'
+  },
 
+  rpc: {
+    port: 8082,
+    host: '192.168.101.11'
   }
 }
