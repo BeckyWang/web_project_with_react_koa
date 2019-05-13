@@ -4,6 +4,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 
 const base_config = require('./webpack.base.js');
 const public_config = require('../../config.js');
@@ -51,6 +53,15 @@ module.exports = merge(base_config, {
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[name].chunk.css'
+    }),
+    new CopyWebpackPlugin([{
+      from: 'node_modules/@babel/polyfill/dist/polyfill.min.js',
+      to: 'lib/'
+    }]),
+    new HtmlWebpackTagsPlugin({ 
+      scripts: [`${host}:${port}/lib/polyfill.min.js`],
+      publicPath: false,
+      append: false
     }),
     new CleanWebpackPlugin()
   ]
