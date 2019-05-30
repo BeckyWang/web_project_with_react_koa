@@ -5,8 +5,6 @@ const bodyParser = require('koa-bodyParser');
 const koaStatic = require('koa-static');
 const router = require('./router.js');
 const public_config = require('../config.js')[process.env.NODE_ENV];
-
-const host = public_config.host;
 const port = public_config.server_port;
 
 const app = new Koa();
@@ -24,5 +22,5 @@ app.use(koaStatic(path.join(__dirname, '../dist')));
 app.use(router.routes()).use(router.allowedMethods());
 
 app.listen(port, () => {
-    console.log(`server is starting at port: ${host}:${port}`);
+  console.log(`server is starting at port: ${port}`);
 });

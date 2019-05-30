@@ -13,7 +13,8 @@ class Home extends React.Component {
       summary: '',
       inputTips: '',
       loading: false,
-      error: false
+      error: false,
+      wordNum: 0
     };
 
     this.toTry = this.toTry.bind(this);
@@ -33,7 +34,8 @@ class Home extends React.Component {
       const { text } = await getRandomText();
       this.setState({
         originalText: text,
-        inputTips: ''
+        inputTips: '',
+        wordNum: text.length
       });
     } catch ({ info = '未知错误，请稍候再试！' }) {
       this.setState({
@@ -45,14 +47,17 @@ class Home extends React.Component {
 
   toClearTextarea() {
     this.setState({
-      originalText: ''
+      originalText: '',
+      wordNum: 0
     })
   }
 
   handleTextareaChange(e) {
+    const val = e.target.value;
     this.setState({
       inputTips: '',
-      originalText: e.target.value
+      originalText: val,
+      wordNum: val.length
     })
   }
 
@@ -103,7 +108,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { originalText, summary, loading, error, inputTips } = this.state;
+    const { originalText, summary, loading, error, inputTips, wordNum } = this.state;
 
     return (<div className={styles['home-container']}>
       <div className={styles['banner']}>
@@ -121,13 +126,14 @@ class Home extends React.Component {
           <div className={styles['input']}>
             <div className={styles['title']}>
               <div>
-                <span>请输入一段想分析的科研文章：</span>
+                <span>请输入一段想分析的科研文章，建议小于1000个字：</span>
                 <span className={styles['random-text-link']} onClick={this.toGetRandomText}>随机示例</span>
               </div>
               { originalText.length > 0 && <button className={styles['textarea-clear-btn']} onClick={this.toClearTextarea}>清空输入</button>}
             </div>
             <div className={styles['input-box']}>
               <textarea rows="10" className={styles['nlp-textarea']} value={originalText} onChange={this.handleTextareaChange}></textarea>
+              <div className={styles['word-num-tips']}>您已输入{wordNum}个字</div>
             </div>
             { inputTips.length > 0 && <div className={styles['input-tips']}>{inputTips}</div>}
           </div>

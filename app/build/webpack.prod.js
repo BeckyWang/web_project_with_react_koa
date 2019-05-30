@@ -9,18 +9,12 @@ const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 
 const base_config = require('./webpack.base.js');
 const public_config = require('../../config.js');
-
-const host = public_config['production'].host;
 const port = public_config['production'].server_port;
 
 module.exports = merge(base_config, {
   mode: 'production',
 
   devtool: 'cheap-module-source-map',
-
-  output: {
-    publicPath: `${host}:${port}/`,
-  },
 
   module: {
     rules: [{
@@ -58,8 +52,8 @@ module.exports = merge(base_config, {
       from: 'node_modules/@babel/polyfill/dist/polyfill.min.js',
       to: 'lib/'
     }]),
-    new HtmlWebpackTagsPlugin({ 
-      scripts: [`${host}:${port}/lib/polyfill.min.js`],
+    new HtmlWebpackTagsPlugin({
+      scripts: ['./lib/polyfill.min.js'],
       publicPath: false,
       append: false
     }),
